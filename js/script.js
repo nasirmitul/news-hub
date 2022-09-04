@@ -63,7 +63,7 @@ const displayNews = allNews => {
 
                     <div class="container-fluid">
                         <h5 class="card-title">${data.title}</h5>
-                        <p class="card-text mt-4">${data.details.slice(0, 500)}....</p>
+                        <p class="card-text mt-4">${data.details.slice(0, 200)}....</p>
 
                     </div>
 
