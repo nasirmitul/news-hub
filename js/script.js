@@ -131,12 +131,39 @@ const newsDetail = (id) => {
     fetch(url)
         .then(res => res.json())
         .then(data => fullNewsDetails(data.data[0]))
+        .catch((e) => console.log(e))
 }
 
 const fullNewsDetails = newsDetail => {
-    console.log(newsDetail);
 
-    
+    console.log(newsDetail);
+    const openmodal = document.getElementById('openmodal');
+
+    const modal = document.createElement('div');
+    modal.innerHTML = `
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">${newsDetail.title}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="${newsDetail.img}" alt="">
+        <p class="description"></p>
+        <img class="author" src="" alt="">
+        <p class="pub-date">published date</p>
+        <p class="total-view"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+    `
+    openmodal.appendChild(modal);
 }
 
 categories();
