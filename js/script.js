@@ -149,15 +149,15 @@ const fullNewsDetails = newsDetail => {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <img src="${newsDetail.img}" alt="">
-        <p class="description"></p>
-        <img class="author" src="" alt="">
-        <p class="pub-date">published date</p>
-        <p class="total-view"></p>
+        <img src="${newsDetail.thumbnail_url}" alt="">
+        <p class="description">${newsDetail.details}</p>
+        <img class="author-img-modal" src="${newsDetail.author.img}" alt="">
+        <p class="author-name">${newsDetail.author.name}</p>
+        <p class="pub-date">${newsDetail.author.published_date}</p>
+        <p class="total-view">${newsDetail.total_view}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
       </div>
     </div>
   </div>

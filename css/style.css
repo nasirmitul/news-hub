@@ -166,3 +166,8 @@ nav::after{
     position: absolute;
     top: 250px;
 }
+
+.author-img-modal{
+    height: 200px;
+    width: 200px;
+}
