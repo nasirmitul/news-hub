@@ -156,4 +156,13 @@ nav::after{
 
 .card-body{
     padding: 0;
+    position: relative;
+}
+
+
+.card-footer{
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 250px;
 }

@@ -49,7 +49,7 @@ const displayNews = allNews => {
 
                     <div class="container-fluid">
                         <h5 class="card-title">${data.title}</h5>
-                        <p class="card-text mt-4">${data.details}</p>
+                        <p class="card-text mt-4">${data.details.slice(0,500)}....</p>
 
                     </div>
 
@@ -59,17 +59,17 @@ const displayNews = allNews => {
                         <div class="container d-flex align-items-center">
 
                             <div class="profile-img" id="footer-profile-image">
-                                <img src="img/profile.jpg" alt="profile">
+                                <img src="${data.author.img}" alt="profile">
                             </div>
                             <div class="cotainer d-flex flex-column align-items-start justify-content-center ms-2">
-                                <p class="m-0" id="profile-name">John Snow</p>
-                                <p class="m-0 text-muted" id="profile-date">Jan 10, 2022</p>
+                                <p class="m-0" id="profile-name">${data.author.name}</p>
+                                <p class="m-0 text-muted" id="profile-date">${data.author.published_date}</p>
                             </div>
                         </div>
 
                         <div class="container d-flex align-items-center mt-2 mt-md-0">
                             <span><i class="fa-solid fa-eye me-2"></i></span>
-                            <p class="m-0">1.5M</p>
+                            <p class="m-0">${data.total_view}</p>
                         </div>
 
                         <div class="container d-flex align-items-center mt-2 mt-md-0">
