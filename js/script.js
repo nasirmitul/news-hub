@@ -26,6 +26,12 @@ const displayCategories = allData => {
     })
 }
 
+function compare(a, b){ 
+    if(a.total_view < b.total_view)return 1; 
+    else if(a.total_view > b.total_view)return -1; 
+    else return 0; 
+}
+
 const displayNews = allNews => {
     let count = 0;
 
@@ -34,9 +40,10 @@ const displayNews = allNews => {
 
     news.innerHTML = "";
 
+    allNews.sort(compare);
     allNews.forEach(data => {
         count++;
-        const newsDiv = document.createElement('div');  
+        const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
         <div class="card mt-5 ms-auto me-auto mb-3 custom-card-style">
         <div class="row g-0">
@@ -49,7 +56,7 @@ const displayNews = allNews => {
 
                     <div class="container-fluid">
                         <h5 class="card-title">${data.title}</h5>
-                        <p class="card-text mt-4">${data.details.slice(0,500)}....</p>
+                        <p class="card-text mt-4">${data.details.slice(0, 500)}....</p>
 
                     </div>
 
@@ -81,7 +88,9 @@ const displayNews = allNews => {
                         </div>
 
                         <div class="container d-flex align-items-center justify-content-end mt-2 mt-md-0">
-                            <span id="read-more"><i class="fa-solid fa-arrow-right-long"></i></span>
+                            <span id="read-more" btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -93,8 +102,15 @@ const displayNews = allNews => {
         news.appendChild(newsDiv);
     })
 
+    
+
     const items = document.getElementById('items');
-    items.innerText =  `${count}`;
+    items.innerText = `${count}`;
+}
+
+
+const openModal = () => {
+
 }
 
 categories();
