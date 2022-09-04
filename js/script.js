@@ -24,6 +24,8 @@ const displayCategories = allData => {
                 .catch((e) => console.log(e))
         });
     })
+
+    togggle(true);
 }
 
 function compare(a, b){ 
@@ -102,15 +104,27 @@ const displayNews = allNews => {
         news.appendChild(newsDiv);
     })
 
-    
+    togggle(false);
 
     const items = document.getElementById('items');
     items.innerText = `${count}`;
 }
 
+let togggle = (isloading) =>
+{
+    let loder = document.getElementById('lodder');
+    if(isloading){
+        loder.classList.remove('d-none');
+    }
+    else
+    {
+        loder.classList.add('d-none')
+    }
+}
 
 const openModal = () => {
 
 }
 
 categories();
+
