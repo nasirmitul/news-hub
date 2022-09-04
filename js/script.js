@@ -4,6 +4,7 @@ const categories = () => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayCategories(data.data.news_category))
+        .catch((e) => console.log(e))
 }
 
 const displayCategories = allData => {
@@ -15,46 +16,44 @@ const displayCategories = allData => {
         a.href = "#";
         categories.appendChild(a);
         a.addEventListener('click', function () {
-            console.log('clicked');
-
             const url = `https://openapi.programming-hero.com/api/news/category/${data.category_id}`;
 
             fetch(url)
                 .then(res => res.json())
                 .then(data => displayNews(data.data))
+                .catch((e) => console.log(e))
         });
     })
 }
 
 const displayNews = allNews => {
+    let count = 0;
+
     console.log(allNews);
-    const news = document.getElementById('news');
+    const news = document.getElementById('news-container');
+
+    news.innerHTML = "";
 
     allNews.forEach(data => {
-        const newsDiv = document.createElement('div');
+        count++;
+        const newsDiv = document.createElement('div');  
         newsDiv.innerHTML = `
         <div class="card mt-5 ms-auto me-auto mb-3 custom-card-style">
         <div class="row g-0">
-            <div class="col-md-3 d-flex" id="card-image">
-                <img src="img/profile.jpg" class="img-fluid rounded-3">
+            <div class="col-md-3 d-flex card-image">
+                <img src="${data.thumbnail_url}" class="img-fluid rounded-3">
             </div>
 
             <div class="col-md-9 p-3">
-                <div class="card-body d-flex flex-column gap-5 container-fluid">
+                <div class="card-body d-flex flex-column container-fluid">
 
                     <div class="container-fluid">
-                        <h5 class="card-title">The best online vintage clothing stores to shop more
-                            sustainably this summer</h5>
-                        <p class="card-text mt-4">There's no better time than now to familiarise
-                            yourself with the best online vintage clothing stores. If you want to
-                            overhaul your wardrobe for the long run, mixing vintage with high street
-                            clothing is the key to being trendy as well as sustainable.</p>
-                        <p class="mb-0 mt-4 ms-0 me-0">But vintage shopping isn't easy, you can easily
-                            spend hours in a store and walk out with...</p>
+                        <h5 class="card-title">${data.title}</h5>
+                        <p class="card-text mt-4">${data.details}</p>
 
                     </div>
 
-                    <div class="container-fluid mt-2 mt-md-5 d-md-flex justify-content-between ps-2 pe-2"
+                    <div class="card-footer container-fluid mt-2 mt-md-5 d-md-flex justify-content-between ps-2 pe-2"
                         id="card-footer">
 
                         <div class="container d-flex align-items-center">
@@ -89,9 +88,13 @@ const displayNews = allNews => {
             </div>
         </div>
     </div>
-        `
+        `;
 
+        news.appendChild(newsDiv);
     })
+
+    const items = document.getElementById('items');
+    items.innerText =  `${count}`;
 }
 
 categories();

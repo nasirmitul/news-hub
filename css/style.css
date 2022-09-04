@@ -93,6 +93,7 @@ nav::after{
     border-radius: 5px;
     margin-top: 15px;
     margin-bottom: 35px;
+    height: 60px;
 }
 
 .items-found p{
@@ -140,4 +141,19 @@ nav::after{
     width: 40px;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.card{
+    padding: 20px;
+    border: none;
+}
+
+.card .card-image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-body{
+    padding: 0;
 }
