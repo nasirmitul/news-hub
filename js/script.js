@@ -10,6 +10,11 @@ const categories = () => {
 const displayCategories = allData => {
     const categories = document.getElementById('categories');
 
+    const home = document.createElement('a');
+    home.href = "#";
+    home.innerText = "Home"
+    categories.appendChild(home);
+
     allData.forEach(data => {
         const a = document.createElement('a');
         a.innerText = data.category_name;
@@ -28,10 +33,10 @@ const displayCategories = allData => {
     togggle(true);
 }
 
-function compare(a, b){ 
-    if(a.total_view < b.total_view)return 1; 
-    else if(a.total_view > b.total_view)return -1; 
-    else return 0; 
+function compare(a, b) {
+    if (a.total_view < b.total_view) return 1;
+    else if (a.total_view > b.total_view) return -1;
+    else return 0;
 }
 
 const displayNews = allNews => {
@@ -90,7 +95,7 @@ const displayNews = allNews => {
                         </div>
 
                         <div class="container d-flex align-items-center justify-content-end mt-2 mt-md-0">
-                            <span id="read-more" btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <span id="read-more" btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="newsDetail('${data._id}')">
                                 <i class="fa-solid fa-arrow-right-long"></i>
                             </span>
                         </div>
@@ -110,20 +115,28 @@ const displayNews = allNews => {
     items.innerText = `${count}`;
 }
 
-let togggle = (isloading) =>
-{
+let togggle = (isloading) => {
     let loder = document.getElementById('lodder');
-    if(isloading){
+    if (isloading) {
         loder.classList.remove('d-none');
     }
-    else
-    {
+    else {
         loder.classList.add('d-none')
     }
 }
 
-const openModal = () => {
+const newsDetail = (id) => {
+    const url = `https://openapi.programming-hero.com/api/news/${id}`
 
+    fetch(url)
+        .then(res => res.json())
+        .then(data => fullNewsDetails(data.data[0]))
+}
+
+const fullNewsDetails = newsDetail => {
+    console.log(newsDetail);
+
+    
 }
 
 categories();
